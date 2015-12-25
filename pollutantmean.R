@@ -17,13 +17,15 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
 filename <- sprintf("%03d", id)  
 filelist <- paste(directory, "/", filename, ".csv", sep = "")
 combine.data <- lapply(filelist, read.csv)
+csum <- NULL
+ccount <- NULL
 
-for (i in length(combine.data)) {
-    na.id <- is.na(combine.data[[i]][,pollutant])
-    pollutant.valid <- combine.data[[i]][,pollutant][!na.id]
-    mean.i <- mean(pollutant.valid)
+for (i in 1:length(combine.data)) {
+  csum[i] <- sum(combine.data[[i]][,pollutant], na.rm = TRUE)
+  subdata <- combine.data[[i]][,pollutant]
+  subdata <- subdata[!is.na(subdata)]
+  ccount[i] <- length(subdata)
 } 
 
-mean(mean.i)
-
+sum(csum)/sum(ccount)
 }
