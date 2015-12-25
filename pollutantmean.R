@@ -14,7 +14,7 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
   ## NOTE: Do not round the result!
 
   ## Generate relative file path
-filelist <- paste(directory, "/", fsprintf("%03d", id), ".csv", sep = "")
+filelist <- paste(directory, "/", sprintf("%03d", id), ".csv", sep = "")
 combine.data <- lapply(filelist, read.csv)
 csum <- NULL
 ccount <- NULL
