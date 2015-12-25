@@ -12,8 +12,7 @@ complete <- function(directory, id = 1:332) {
   ## ...
   ## where 'id' is the monitor ID number and 'nobs' is the
   ## number of complete cases
-filename <- sprintf("%03d", id)  
-filelist <- paste(directory, "/", filename, ".csv", sep = "")
+filelist <- paste(directory, "/", sprintf("%03d", id), ".csv", sep = "")
 combine.data <- lapply(filelist, read.csv)
 nobs <- NULL
 
